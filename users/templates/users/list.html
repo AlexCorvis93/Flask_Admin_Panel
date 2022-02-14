@@ -1,0 +1,17 @@
+
+<html lang="en">
+<body>
+{% block content %}
+{% for p in list %}
+<li>
+    <ul>
+        <p>{{p.name}}</p>
+        <p>{{p.last_name}}</p>
+        <p>{{p.age}}</p>
+        <p>{{p.position_id}}</p>
+    </ul>
+</li>
+{% endfor %}
+{% endblock %}
+</body>
+</html>

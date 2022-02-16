@@ -7,6 +7,7 @@ from database import Users, Profile, Position
 import os
 from dotenv import load_dotenv
 
+
 """FOR LOADING environment variables"""
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 if os.path.exists(dotenv_path):
@@ -26,4 +27,4 @@ db = SQLAlchemy(app)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)

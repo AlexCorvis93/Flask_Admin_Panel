@@ -21,7 +21,7 @@ def create_user():
         try:
             new_user = Users(login=login, pswd=generate_password_hash(password))
             db.session.add(new_user)
-            new_profile = Profile(name=name, last_name=last_name, old=old, position_id=position)
+            new_profile = Profile(name=name, last_name=last_name, old=old, position=position)
             db.session.add(new_profile)
             db.session.commit()
             return redirect(url_for('.show_users_list'))#добавление изменений в бд

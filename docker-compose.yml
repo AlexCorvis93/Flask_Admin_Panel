@@ -1,19 +1,6 @@
 version: '3'
 
 services:
-
-  db:
-    image: postgres:10
-    restart: always
-    environment:
-      POSTGRES_DB: flaskdb
-      POSTGRES_USER: adminflask
-      POSTGRES_PASSWORD: admin123
-    ports:
-      - 5434:5432
-    volumes:
-      - ./postgres-data/postgres:/var/lib/postgresql/data
-
   app:
     restart: always
     build: .
@@ -21,12 +8,22 @@ services:
       - .:/app
     depends_on:
       - db
-    entrypoint: ["python", "app.py"]
+    entrypoint: [ "python", "app.py", "run" ]
     env_file:
       - .env
     ports:
-      - 5000:5000
-
+      - 5555:5000
+  db:
+    image: postgres:10
+    restart: always
+    ports:
+      - 5434:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: flask
+      POSTGRES_USER: adminflask
+      POSTGRES_PASSWORD: admin123
 
   adminer:
     image: adminer
@@ -35,6 +32,8 @@ services:
       - 8080:8080
 
 
+volumes:
+  postgres_data:
 
 
 
